@@ -1,3 +1,13 @@
+/**
+ * jquery.ajaxsubmit.js
+ * 
+ * Renaud Guyon
+ * http://reno.guyon.ca
+ * 
+ * https://github.com/renoguyon/ajaxsubmit
+ */
+
+
 (function($){  
 
 	$.fn.extend({

@@ -1,0 +1,73 @@
+<!DOCTYPE html> 
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>ajaxsubmit.js demo</title> 
+	<link rel="stylesheet" href="styles.css" />
+</head> 
+<body> 
+<div id="wrapper">
+	
+	<div id="form-wrapper">
+		<form id="myAjaxForm">
+			<div id="formStatus" style="color: red;"></div>
+			<div class="line">
+				<label>Firstname</label>
+				<input type="text" name="firstname">
+			</div>
+			<div class="line">
+				<label>Lastname</label>
+				<input type="text" name="lastname">
+			</div>
+			<div class="line">
+				<label>Your email</label>
+				<input type="text" name="email">
+			</div>
+			<div class="line">
+				<label>Message</label>
+				<textarea name="message"></textarea>
+			</div>
+			
+			<div class="line"><button type="button" id="submit-button">Send!</button></div>
+		</form>
+	</div>
+	
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="../jquery.ajaxsubmit.min.js"></script>
+<script>
+$(document).ready(function(){
+
+	$("#submit-button").click(function(){
+		
+		$("#myAjaxForm").ajaxSubmit({
+			url : 'process.php',
+			onSubmit: function(){
+				// Code executed when your data are submitted
+				// In this example we're removing previous error message
+				$("#formStatus").empty();
+			},
+			onNotOK: function( response ){
+				// Executed when your scripts return everything but {status:ok}
+				// ie: display error message
+				if( response.error ){
+					$("#formStatus").text( response.error );
+				}
+				else{
+					$("#formStatus").text( "Unable to process your request!" );
+				}
+			},
+			onOK: function(){
+				// Executed when your script returns OK status
+				// ie: replace form by confirmation message
+				$("#myAjaxForm").remove();
+				$("<div></div>").appendTo("#form-wrapper").text("Thank you!");
+			}
+		});
+		
+	});
+
+});
+</script>
+</body>
+</html>
