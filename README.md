@@ -91,4 +91,6 @@ JSON data returned by the server are passed to this function
 Licensing
 =========
 
-Written by Renaud Guyon, released under the MIT License
+Copyright © 2012 Renaud Guyon
+
+Released under the [MIT License](http://www.opensource.org/licenses/mit-license.php).
